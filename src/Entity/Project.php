@@ -65,6 +65,11 @@ class Project
      */
     private $technos;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->gallery = new ArrayCollection();
@@ -210,6 +215,18 @@ class Project
     public function removeTechno(Techno $techno): self
     {
         $this->technos->removeElement($techno);
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
